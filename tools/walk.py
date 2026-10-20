@@ -173,6 +173,31 @@ def functional(b):
         check(f"all {len(ids)} plays draw every view", not bad, bad)
 
 
+def touch(b):
+    print("Touch")
+    b.size(390, 844, mobile=True, scale=2)
+    b.go(BASE + "#/macbeth", 1)
+    ready(b)
+    b.pump(0.4)
+    for ev in ("pointerdown", "click"):
+        b.js(f"""(() => {{ const el = document.querySelector('.chart .mark.k0'); const r = el.getBoundingClientRect();
+          const x = r.left + r.width / 2, y = r.top + r.height / 2;
+          (document.elementFromPoint(x, y) || el).dispatchEvent(new PointerEvent({ev!r}, {{bubbles: true, clientX: x, clientY: y, pointerType: 'touch'}})); }})()""")
+    b.pump(0.3)
+    check("tapping a mark pins a slip with Read", b.js("!!document.querySelector('.tip.pinned .tiplink')") and
+          b.js("location.hash") == "#/macbeth")
+    b.js("document.querySelector('.tip .tiplink').click()")
+    b.pump(0.6)
+    check("Read on the slip opens the scene", b.js("!!document.querySelector('.script')"))
+    visit(b, "#/macbeth")
+    b.js("[...document.querySelectorAll('.segbtn')].find(x => x.textContent === 'Wide').click()")
+    b.pump(0.3)
+    check("wide chart scrolls inside, not the page", b.js(
+        "document.querySelector('.scroller').scrollWidth > document.querySelector('.scroller').clientWidth"
+        " && document.documentElement.scrollWidth <= 390"))
+    b.js("localStorage.clear()")
+
+
 def no_storage(b):
     print("Storage turned off")
     b.call("Page.addScriptToEvaluateOnNewDocument", source="""
@@ -222,6 +247,7 @@ def main():
     b = Browser()
     try:
         functional(b)
+        touch(b)
         shots(b)
     finally:
         errors = list(b.errors)

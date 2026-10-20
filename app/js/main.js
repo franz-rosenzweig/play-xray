@@ -67,7 +67,8 @@ async function route() {
       setTitle(`${play.title} · Play X-Ray`);
       const page = swap();
       page.append(playHeader(play, r.view));
-      const sheet = h('section.sheet', { id: 'sheet' });
+      const sheet = h('section.sheet', { id: 'sheet',
+        'data-edge': `${play.short} \u25B8 ${fmt(play.total)} lines \u25B8 ${play.scenes.length} scenes`.toUpperCase() });
       page.append(sheet);
       if (r.view === 'read') {
         const sc = r.scene ? play.byId.get(r.scene) : play.scenes[0];
