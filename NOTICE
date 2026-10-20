@@ -1,0 +1,17 @@
+Play X-Ray
+Copyright (c) 2026 franz-rosenzweig, MIT License (see LICENSE).
+
+It includes the following third-party material, each under its own terms.
+
+The plays (app/data/*.json)
+  Built by tools/build_data.py from the Moby Shakespeare text as published at
+  https://shakespeare.mit.edu/ (copy from https://github.com/TheMITTech/shakespeare/).
+  The site states that its HTML versions of the plays are placed in the public domain.
+  The JSON keeps the words as they are and adds structure (acts, scenes, speakers,
+  line counts); speaker names were evened out as described in docs/DEVELOPING.md.
+
+Fonts (app/fonts/)
+  EB Garamond   Copyright 2017 The EB Garamond Project Authors. SIL Open Font License 1.1 (OFL-ebgaramond.txt)
+  Courier Prime Copyright 2015 The Courier Prime Project Authors. SIL Open Font License 1.1 (OFL-courierprime.txt)
+  Caveat        Copyright 2014 The Caveat Project Authors. SIL Open Font License 1.1 (OFL-caveat.txt)
+  The woff2 files are the latin and latin-ext subsets served by Google Fonts, unchanged.

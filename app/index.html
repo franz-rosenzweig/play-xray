@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Play X-Ray</title>
+<meta name="description" content="See any Shakespeare play at a glance: who's on stage, who talks most, and how the scenes fall. A scene chart, cast list, ribbons and the full text for all 37 plays.">
+<meta name="color-scheme" content="light dark">
+<meta name="theme-color" content="#f3ecdc">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Play X-Ray">
+<meta property="og:description" content="See any Shakespeare play at a glance: who's on stage, who talks most, and how the scenes fall.">
+<meta property="og:image" content="https://stuffs.tiresia.xyz/covers/play-xray.webp">
+<meta property="og:url" content="https://stuffs.tiresia.xyz/play-xray/">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="icon.svg" type="image/svg+xml">
+<link rel="icon" href="icon-192.png" type="image/png" sizes="192x192">
+<link rel="apple-touch-icon" href="icon-180.png">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="stylesheet" href="fonts/fonts.css">
+<link rel="stylesheet" href="style.css">
+<script>
+  // Pick paper or film before the first paint, so there is no flash.
+  try {
+    const t = JSON.parse(localStorage.getItem('play-xray:prefs') || '{}').theme;
+    if (t === 'light' || t === 'dark') document.documentElement.dataset.theme = t;
+  } catch (e) { /* storage off */ }
+</script>
+</head>
+<body>
+<a class="skip" href="#app">Skip to the content</a>
+<header class="topbar">
+  <a class="brand" href="#/" aria-label="Play X-Ray, the shelf">
+    <svg class="brandmark" viewBox="0 0 32 32" aria-hidden="true">
+      <rect x="2" y="5" width="28" height="24" rx="3" class="bm-page"/>
+      <path d="M6 2h7v5H6z" class="bm-tab"/>
+      <rect x="6" y="11" width="9" height="3" rx="1" class="bm-ink"/>
+      <rect x="16" y="11" width="4" height="3" rx="1" class="bm-red"/>
+      <rect x="9" y="16" width="13" height="3" rx="1" class="bm-ink"/>
+      <rect x="6" y="21" width="5" height="3" rx="1" class="bm-red"/>
+      <rect x="18" y="21" width="8" height="3" rx="1" class="bm-ink"/>
+    </svg>
+    <span>Play X-Ray</span>
+  </a>
+  <nav class="barnav" aria-label="Site">
+    <a href="#/">Shelf</a>
+    <a href="#/all">All 37</a>
+    <button id="theme" class="themebtn" type="button" aria-pressed="false" title="Switch to film">
+      <svg viewBox="0 0 20 20" aria-hidden="true"><rect x="3" y="3" width="14" height="14" rx="2" fill="none" stroke-width="1.6"/><path d="M3 13l4-4 3 3 2-2 5 5" fill="none" stroke-width="1.6"/></svg>
+      <span class="label">Film</span>
+    </button>
+  </nav>
+</header>
+<main id="app" tabindex="-1"></main>
+<footer class="foot">
+  <p>The text is the public-domain Moby Shakespeare, as published at shakespeare.mit.edu. Line counts are lines as printed in that edition and differ a little from other editions.</p>
+  <p>Free, no account, nothing tracked. <a href="https://github.com/franz-rosenzweig/play-xray">The code</a> is MIT licensed.</p>
+</footer>
+<noscript><p class="empty">Play X-Ray needs JavaScript to draw its charts.</p></noscript>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
